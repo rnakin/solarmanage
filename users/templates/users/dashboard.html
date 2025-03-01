@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>DASHBOARD</h1>
+
+    <p>Hello, {{member.member_fname}} {{member.member_lname}}</p>
+
+
+    {% if member.member_role == "manager" %}
+        <p>Person with Manager role should see this.</p>
+    {% endif %}
+    
+    {% if member.member_role == "manager" or member.member_role == "drone" %}
+        <p>Person with Manager or Drone Controller role should see this.</p>
+    {% endif %}
+
+    {% if member.member_role == "manager" or member.member_role == "analyst" %}
+        <p>Person with Manager or Data Analyst role should see this.</p>
+    {% endif %}
+
+    <p>Everyone should see this.</p>
+    
+
+    <a href="{% url 'users:logout' %}">Logout</a>
+</body>
+</html>
