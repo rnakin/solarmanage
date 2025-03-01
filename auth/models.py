@@ -14,8 +14,8 @@ class Member(models.Model):
 
     member_code = models.CharField(max_length=20, blank=True)
     member_fname = models.CharField(max_length=32)
-    member_mname = models.CharField(max_length=32)
-    member_lname = models.CharField(max_length=32)
+    member_mname = models.CharField(max_length=32, blank=True)
+    member_lname = models.CharField(max_length=32, blank=True)
     member_user = models.ForeignKey(User, on_delete=models.CASCADE)
     member_info = models.CharField(max_length=128, blank=True)
     member_role = models.CharField(max_length=20, choices=ROLE, default='staff')
