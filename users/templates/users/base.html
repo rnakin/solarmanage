@@ -20,12 +20,20 @@
     .main-area {
         grid-area: main;
         margin: 10px 30px;
+        font-size: 20px;
     }
     .sidebar-area {
         grid-area: sidebar;
-        background-color: burlywood;
+        background-color: rgb(222, 184, 135);
         height: 100vh; 
-
+    }
+    .sidebar-list {
+        background-color: rgb(185, 153, 112);
+        padding: 20px;
+        margin-left: -40px;
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-weight: bold;
     }
 </style>
 <body class="container" style="background-color: antiquewhite;">
@@ -33,10 +41,14 @@
         {% include 'users/header.html' %}
     </header>
     <sidebar class="sidebar-area">
-        <ul>
-            <li>Dashboard</li>
-            <li>Solar Plants</li>
-            <li>Upload</li>
+        <ul style="list-style-type: none;">
+            <li class="sidebar-list">Dashboard</li>
+            {% if member.member_role == "manager" or member.member_role == "analyst" or member.member_role == "staff" %}
+            <li class="sidebar-list">Solar Plants</li>
+            {% endif %}
+            {% if member.member_role == "manager" or member.member_role == "drone" %}
+            <li class="sidebar-list">Upload</li>
+            {% endif %}
         </ul>
     </sidebar>
     <main class="main-area">
