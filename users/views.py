@@ -8,7 +8,7 @@ from .models import Member
 # Create your views here.
 
 def index(request):
-    return render(request, "users/index.html")
+    return render(request, "users/login.html")
 
 def dashboard(request):
     if not request.user.is_authenticated:
