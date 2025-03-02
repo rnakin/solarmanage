@@ -52,12 +52,12 @@ def register_view(request):
             user.is_active = True
             user.save()
 
-            Member.objects.create(
-                member_fname = user.first_name,
-                member_lname = user.last_name,
-                member_user = user,
-                member_info = "Info",
-            )
+            # Member.objects.create(
+            #     member_fname = user.first_name,
+            #     member_lname = user.last_name,
+            #     member_user = user,
+            #     member_info = "Info",
+            # )
 
             return HttpResponseRedirect(reverse("users:login"))
         else:
