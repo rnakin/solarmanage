@@ -1,14 +1,22 @@
+{% extends 'users/base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <style>
+
+    </style>
 </head>
 <body>
+
+    {% include 'users/header.html' %}
+    {% block content %}
+    <main>
     <h1>DASHBOARD</h1>
 
-    <p>Hello, {{member.member_fname}} {{member.member_lname}}</p>
+    <h2>Hello, {{member.member_fname}} {{member.member_lname}}</h2>
 
 
     {% if member.member_role == "manager" %}
@@ -24,8 +32,7 @@
     {% endif %}
 
     <p>Everyone should see this.</p>
-    
-
-    <a href="{% url 'users:logout' %}">Logout</a>
+    {% endblock %}
+    </main>
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Solar{% endblock %}</title>
+</head>
+<style>
+    .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas: 
+            "header header header header header header"
+            "sidebar main main main main main";
+    }
+    .header-area {
+        grid-area: header;
+    }
+    .main-area {
+        grid-area: main;
+        margin: 10px 30px;
+    }
+    .sidebar-area {
+        grid-area: sidebar;
+        background-color: burlywood;
+        height: 100vh; 
+
+    }
+</style>
+<body class="container" style="background-color: antiquewhite;">
+    <header class="header-area">
+        {% include 'users/header.html' %}
+    </header>
+    <sidebar class="sidebar-area">
+        <ul>
+            <li>Dashboard</li>
+            <li>Solar Plants</li>
+            <li>Upload</li>
+        </ul>
+    </sidebar>
+    <main class="main-area">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer-area">
+
+    </footer>
+</body>
+</html>
