@@ -69,3 +69,9 @@ def register_view(request):
         "form": form,
         "Message" : "Register your account to gain access.",
     })
+
+def profile_view(request):
+    current_member = Member.objects.get(member_user=request.user)
+    return render(request, "users/profile.html", {
+        "member": current_member
+    })
