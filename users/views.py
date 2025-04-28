@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from .forms import UserRegisterForm
 from .models import Member
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 def index(request):
@@ -52,12 +54,12 @@ def register_view(request):
             user.is_active = True
             user.save()
 
-            Member.objects.create(
-                member_fname = user.first_name,
-                member_lname = user.last_name,
-                member_user = user,
-                member_info = "Info",
-            )
+            # Member.objects.create(
+            #     member_fname = user.first_name,
+            #     member_lname = user.last_name,
+            #     member_user = user,
+            #     member_info = "Info",
+            # )
 
             return HttpResponseRedirect(reverse("users:login"))
         else:
@@ -68,4 +70,11 @@ def register_view(request):
     return render(request, "users/register.html", {
         "form": form,
         "Message" : "Register your account to gain access.",
+    })
+
+@login_required(login_url='/login')
+def profile_view(request):
+    current_member = Member.objects.get(member_user=request.user)
+    return render(request, "users/profile.html", {
+        "member": current_member
     })

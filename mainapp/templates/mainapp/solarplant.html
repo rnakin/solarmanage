@@ -1,0 +1,40 @@
+{% extends 'users/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Plants</title>
+    <style>
+    </style>
+</head>
+<body>
+    {% include 'users/header.html' %}
+    {% block content %}
+    <main>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Solar Plant</th>
+                <th>Energy Generated</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for plant in plants %}
+                <tr>
+                    <td>{{ plant.id }}</td>
+                    <td>{{ plant.plant_name }}</td>
+                    <td>{{ energy.0  }}</td>
+                    <td>
+                    <a class="details_button" href="{% url 'mainapp:details' plant.id %}">Details</a>
+                    </td> 
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+    </main>
+</body>
+</html>

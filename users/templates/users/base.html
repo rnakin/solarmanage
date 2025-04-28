@@ -13,6 +13,7 @@
         grid-template-areas: 
             "header header header header header header"
             "sidebar main main main main main";
+        font-family: 'Inter', sans-serif;
     }
     .header-area {
         grid-area: header;
@@ -20,23 +21,80 @@
     .main-area {
         grid-area: main;
         margin: 10px 30px;
+        font-size: 20px;
     }
     .sidebar-area {
         grid-area: sidebar;
-        background-color: burlywood;
+        background-color: grey;
+        background-image: url('images/solar_plant.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
         height: 100vh; 
-
     }
+    .sidebar-list {
+        background-color:rgba(255, 255, 255, 0.3);
+        margin-left: -40px;
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .sidebar-link {
+        text-decoration: none; 
+        color: inherit; 
+        display: block;
+        padding: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse; 
+    }
+
+    th, td {
+        padding: 16px;
+        text-align: center;
+    }
+
+    tr {
+        border-bottom: 1px solid #ddd; 
+    }
+
+    table, th, td {
+        border: none; 
+    }
+
+    .details_button {
+        color: black;
+        text-decoration: none;
+        padding: 12px 24px;
+        background-color: #36cbf4;
+        border-radius: 5px;
+    }
+
+    .details_button:hover {
+        background-color: #2f97d3;
+    }
+
 </style>
-<body class="container" style="background-color: antiquewhite;">
+<body class="container" style="background-color: whitesmoke;">
     <header class="header-area">
         {% include 'users/header.html' %}
     </header>
     <sidebar class="sidebar-area">
-        <ul>
-            <li>Dashboard</li>
-            <li>Solar Plants</li>
-            <li>Upload</li>
+        <ul style="list-style-type: none;">
+            <li class="sidebar-list">
+                <a href="{% url 'users:dashboard' %}" class="sidebar-link">Dashboard</a>
+            </li>
+            {% if member.member_role == "manager" or member.member_role == "analyst" or member.member_role == "staff" %}
+            <li class="sidebar-list">
+                <a href="{% url 'mainapp:solarplant' %}" class="sidebar-link">Solar Plants</a>
+            </li>
+            {% endif %}
+            {% if member.member_role == "manager" or member.member_role == "drone" or member.member_role == "staff" %}
+            <li class="sidebar-list">
+                <a href="{% url 'droneimage:upload_image' %}" class="sidebar-link">Upload</a>
+            </li>
+            {% endif %}
         </ul>
     </sidebar>
     <main class="main-area">
